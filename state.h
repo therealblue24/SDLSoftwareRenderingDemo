@@ -9,21 +9,31 @@
 #include <stdbool.h>
 
 typedef struct state_s {
-	SDL_Window *window;
-	SDL_Texture *texture;
-	SDL_Renderer *renderer;
-	uint32_t *pixels;
-	char last_err[2048];
-	bool err_ok;
-	bool quit;
-	uint32_t width;
-	uint32_t height;
+    // our window
+    SDL_Window *window;
+    // our texture to draw on
+    SDL_Texture *texture;
+    // our renderer to display the texture
+    SDL_Renderer *renderer;
+    // our screen we want to render to the texture
+    uint32_t *pixels;
+    // strlcpy() needed
+    char last_err[2048];
+    // if this is false there was an error
+    bool err_ok;
+    // did user request quit?
+    bool quit;
+    // if you don't know what these variables mean
+    // don't program
+    uint32_t width;
+    uint32_t height;
 } state_t;
 
+// custom ASSERT macro
 #define ASSERT(_e, ...)               \
-	if(!(_e)) {                       \
-		fprintf(stderr, __VA_ARGS__); \
-		exit(1);                      \
-	}
+    if(!(_e)) {                       \
+        fprintf(stderr, __VA_ARGS__); \
+        exit(1);                      \
+    }
 
 #endif /* STATE_H_ */
